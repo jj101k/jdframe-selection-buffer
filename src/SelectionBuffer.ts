@@ -12,13 +12,13 @@ import { BatchSendCondition } from "./BatchSendCondition"
  * This class only handles assembling the set of items to work on. To do the
  * work (and get the results), you'll want to chain a .then() or await it.
  *
- * If you need to operate on non-primitive objects, use LoadSelectionBufferAny.
+ * If you need to operate on non-primitive objects, use SelectionBufferAny.
  *
  * As a promise, this is triggered when selection is complete; this has no
  * bearing on when actions which were in turn triggered by the selection were
  * completed.
  */
-export class LoadSelectionBuffer<I> extends ExtensiblePromise<I[]> implements Batchable<I> {
+export class SelectionBuffer<I> extends ExtensiblePromise<I[]> implements Batchable<I> {
     /**
      *
      */

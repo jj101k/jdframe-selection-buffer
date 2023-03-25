@@ -1,10 +1,10 @@
 import { PseudoMap } from "@jdframe/core"
 import * as assert from "assert"
-import { LoadSelectionBuffer, LoadSelectionBufferAny } from "../src"
+import { SelectionBuffer, SelectionBufferAny } from "../src"
 describe("Load selection buffer tests", () => {
     it("can handle basic buffering duties", async () => {
         const simpleBatchFunction = (ts: number[]) => Promise.resolve(new Map(ts.map(t => [t, t])))
-        const buffer = new LoadSelectionBuffer<number>()
+        const buffer = new SelectionBuffer<number>()
         const promise = buffer.then(simpleBatchFunction)
         buffer.add(1)
         buffer.add(2)
@@ -16,7 +16,7 @@ describe("Load selection buffer tests", () => {
     it("can use a custom load selection buffer", async () => {
         type Entity = {id: string}
         const complexBatchFunction = (ts: Entity[]) => Promise.resolve(new PseudoMap((entity: Entity) => entity.id, ts.map(t => [t, t])))
-        const buffer = new LoadSelectionBufferAny((entity: Entity) => entity.id)
+        const buffer = new SelectionBufferAny((entity: Entity) => entity.id)
         const promise = buffer.then(complexBatchFunction)
 
         buffer.add({id: "1"})

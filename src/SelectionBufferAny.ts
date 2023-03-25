@@ -1,13 +1,13 @@
 import { PseudoMap, PseudoSet } from "@jdframe/core"
-import { LoadSelectionBuffer } from "./LoadSelectionBuffer"
+import { SelectionBuffer } from "./SelectionBuffer"
 import { BatchSendCondition } from "./BatchSendCondition"
 
 /**
- * @see LoadSelectionBuffer
+ * @see SelectionBuffer
  *
- * This is the same as LoadSelectionBuffer but supports non-primitive objects.
+ * This is the same as SelectionBuffer but supports non-primitive objects.
  */
-export class LoadSelectionBufferAny<K extends string | number, I> extends LoadSelectionBuffer<I> {
+export class SelectionBufferAny<K extends string | number, I> extends SelectionBuffer<I> {
     /**
      *
      */
