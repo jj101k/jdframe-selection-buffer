@@ -42,6 +42,11 @@ export class SelectionBuffer<I> extends ExtensiblePromise<I[]> implements Batcha
     /**
      *
      */
+    private triggerPromise: TriggerPromise
+
+    /**
+     *
+     */
     private get delayMs() {
         return this.sendCondition.timeoutMs ?? null
     }
@@ -103,7 +108,7 @@ export class SelectionBuffer<I> extends ExtensiblePromise<I[]> implements Batcha
                 this.timeout = null
             }
             this.debugLog("Resolving", this.pendingItems)
-            this.promise.activate()
+            this.triggerPromise.activate()
         }
     }
 
@@ -112,7 +117,7 @@ export class SelectionBuffer<I> extends ExtensiblePromise<I[]> implements Batcha
      */
     protected pendingItems = new Set<I>()
 
-    protected promise: TriggerPromise<I[]>
+    protected promise: Promise<I[]>
 
     /**
      *
@@ -170,7 +175,9 @@ export class SelectionBuffer<I> extends ExtensiblePromise<I[]> implements Batcha
         super()
         this.debugLog({sendCondition, delay: _delay})
 
-        this.promise = new TriggerPromise(() => [...this.items])
+        this.triggerPromise = new TriggerPromise()
+
+        this.promise = this.triggerPromise.then(() => [...this.items])
     }
 
     /**
