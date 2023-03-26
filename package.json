@@ -1,6 +1,5 @@
 {
   "name": "@jdframe/selection-buffer",
-  "version": "1.0.0",
   "description": "A buffer for collecting a group of things and then acting on them",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
