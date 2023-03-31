@@ -150,7 +150,8 @@ export class SelectionBuffer<I> extends ExtensiblePromise<I[]> implements Batcha
     }
 
     /**
-     *
+     * This is true if the buffer has reached the state where it should be
+     * resolved.
      */
     get ready() {
         return this._ready
