@@ -4,8 +4,6 @@ import { Batchable } from "./Batchable"
 import { BatchSendCondition } from "./BatchSendCondition"
 
 /**
- * @see Batch which does something similar
- *
  * This provides a loading buffer which will hang around for `delayMs` milliseconds
  * before resolving with the accumulated array of values.
  *
