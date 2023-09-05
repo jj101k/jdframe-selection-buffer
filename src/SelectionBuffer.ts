@@ -16,7 +16,7 @@ import { BatchSendCondition } from "./BatchSendCondition"
  * bearing on when actions which were in turn triggered by the selection were
  * completed.
  */
-export class SelectionBuffer<I> extends ExtensiblePromise<I[]> implements Batchable<I> {
+export class SelectionBuffer<I extends O, O = I> extends ExtensiblePromise<O[]> implements Batchable<O> {
     /**
      *
      */
@@ -36,11 +36,6 @@ export class SelectionBuffer<I> extends ExtensiblePromise<I[]> implements Batcha
      *
      */
     private timeout: NodeJS.Timeout | null = null
-
-    /**
-     *
-     */
-    private triggerPromise: TriggerPromise
 
     /**
      *
@@ -115,7 +110,15 @@ export class SelectionBuffer<I> extends ExtensiblePromise<I[]> implements Batcha
      */
     protected pendingItems = new Set<I>()
 
-    protected promise: Promise<I[]>
+    /**
+     *
+     */
+    protected promise: Promise<O[]>
+
+    /**
+     *
+     */
+    protected readonly triggerPromise: TriggerPromise
 
     /**
      *
